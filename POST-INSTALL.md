@@ -64,6 +64,33 @@ configured Caps+W action intentionally closes the last terminal and quits
 Ghostty. Fully quit and reopen Ghostty after installation so the setting is
 applied to new windows.
 
+When Spotify is open, new interactive shells start a live three-row audio
+equalizer with 21 wider columns and gaps between them directly below the
+neofetch banner and above the shell prompt, inset two characters from
+neofetch's left edge. It reads the macOS system-output mix through
+CAVA/CoreAudio and updates continuously at 60 FPS while audio plays. Each
+column has 24 fractional height levels across the three terminal rows, with
+fast attack and eased decay so the bars stay smooth and responsive. The graph
+is followed by a monochrome now-playing artist/title line and a blank spacer
+before the prompt. Grant
+Ghostty access under **System Settings
+→ Privacy & Security → Screen & System Audio Recording → System Audio
+Recording Only**. Open a new Ghostty window after granting permission.
+
+### Approve a trusted downloaded app
+
+The installer adds an `allow` alias to `~/.zshrc` for apps obtained from a
+source you trust:
+
+```bash
+allow "/Applications/App Name.app"
+```
+
+This removes only macOS's `com.apple.quarantine` download marker, recursively
+for that app bundle. It does not make an untrusted, damaged, unsigned, or
+malicious app safe, and it does not grant Accessibility, Automation, Full Disk
+Access, or other Privacy & Security permissions.
+
 ## 5. Verify the setup
 
 ```bash
@@ -106,8 +133,12 @@ The installer applies these project files to the live setup:
 ~/.config/aerospace/smart-open-ghostty.sh
 ~/.config/aerospace/smart-place-window.sh
 ~/.config/borders/bordersrc
+~/.config/cava/config
 ~/.config/ghostty/config
 ~/.config/karabiner/assets/complex_modifications/artifactdog-hyper.json
+~/.config/artifactdog/terminal-equalizer.zsh
+~/.local/bin/artifactdog-terminal-banner
+~/.zshrc (Artifactdog allow helper section)
 ```
 
 AeroSpace handles tiling, focus, workspaces, and hotkeys. JankyBorders is a

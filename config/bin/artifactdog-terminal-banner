@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -u
+
+if [ -x /opt/homebrew/bin/neofetch ]; then
+  neofetch_bin=/opt/homebrew/bin/neofetch
+elif command -v neofetch >/dev/null 2>&1; then
+  neofetch_bin="$(command -v neofetch)"
+else
+  exit 0
+fi
+
+"$neofetch_bin" "$@"

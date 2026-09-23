@@ -92,7 +92,10 @@ fi
 echo "Installing the dependencies listed in Brewfile..."
 bash -n \
   "$ROOT/install.sh" \
-  "$ROOT"/config/aerospace/*.sh
+  "$ROOT"/config/aerospace/*.sh \
+  "$ROOT/scripts/install-terminal-banner.sh" \
+  "$ROOT/scripts/install-allow-helper.sh"
+zsh -n "$ROOT/config/zsh/artifactdog-terminal-equalizer.zsh"
 brew bundle --file="$ROOT/Brewfile"
 
 if [ "$(uname -m)" = "arm64" ]; then
@@ -105,11 +108,15 @@ fi
 
 backup_and_copy_dir aerospace
 backup_and_copy_dir borders
+backup_and_copy_dir cava
 backup_and_copy_dir ghostty
 backup_and_copy_file \
   "$ROOT/karabiner/artifactdog-hyper.json" \
   "$HOME/.config/karabiner/assets/complex_modifications/artifactdog-hyper.json" \
   artifactdog-hyper.json
+
+bash "$ROOT/scripts/install-terminal-banner.sh"
+bash "$ROOT/scripts/install-allow-helper.sh"
 
 # Keep the separate Globe/Fn key available for language switching. This does
 # not change the Caps Lock -> Hyper mapping used by AeroSpace.

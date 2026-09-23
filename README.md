@@ -27,6 +27,10 @@ macOS permissions and enabling the Karabiner Hyper-key rule.
 - [POST-INSTALL.md](POST-INSTALL.md) — permissions, verification, and known
   behavior.
 - `config/` — the source-of-truth configuration copied by the installer.
+- `scripts/install-terminal-banner.sh` — installs the neofetch wrapper and
+  live CAVA equalizer used by new interactive zsh sessions.
+- `scripts/install-allow-helper.sh` — installs the `allow` zsh alias for
+  removing the download quarantine marker from a trusted app.
 - `Brewfile` — the Homebrew dependencies used by `install.sh`.
 
 ## Design choices
@@ -35,10 +39,20 @@ macOS permissions and enabling the Karabiner Hyper-key rule.
 - JankyBorders provides the focused/inactive colored window outlines; it is a
   visual layer, not another window manager.
 - Ghostty is transparent and uses native macOS blur.
+- New interactive zsh sessions keep the neofetch banner and add a live,
+  monochrome three-row audio-reactive equalizer with 21 wider columns and gaps
+  between them, inset two characters from neofetch's left edge while Spotify
+  is open, followed by a now-playing artist/title line and spacing before the
+  prompt. It samples at 60 FPS and uses 24 fractional height levels across
+  the three rows, with fast attack and eased decay for smooth motion.
+- CAVA reads the macOS system-output mix through CoreAudio tap support; the
+  bars are driven by audio levels, not Spotify track metadata.
 - The native menu bar stays enabled. Native macOS Spaces are not required;
   AeroSpace workspaces avoid their system Space-switch animation.
 - No SIP change is required. This setup does not use Yabai, skhd, or a custom
   menu-bar Space indicator.
+- The `allow` helper only removes `com.apple.quarantine` from an explicitly
+  supplied path; it does not bypass malware detection or privacy permissions.
 - The current layout uses 12px inner/side/bottom gaps, a 7px top gap, and 7px
   borders.
 

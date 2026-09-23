@@ -1,0 +1,22 @@
+# Artifactdog terminal equalizer — real CoreAudio system-output spectrum.
+# macOS 14.2+ can expose the system mix through a CoreAudio tap, so no
+# BlackHole/loopback device is required.
+
+[general]
+bars = 21
+framerate = 60
+sleep_timer = 0
+noise_reduction = 0.45
+
+[input]
+method = coreaudio
+source = tap
+
+[output]
+method = raw
+channels = mono
+data_format = ascii
+ascii_max_range = 1000
+bar_delimiter = 59
+frame_delimiter = 10
+raw_target = /dev/stdout

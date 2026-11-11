@@ -37,7 +37,7 @@ if [ -n "$backup" ] || ! grep -Fq "$MARKER_START" "$ZSHRC"; then
     BEGIN { in_block = 0; found = 0 }
     $0 == start {
       print start
-      print "if [[ -o interactive ]]; then"
+      print "if [[ -o interactive && -t 1 ]]; then"
       print "  \"$HOME/.local/bin/artifactdog-terminal-banner\""
       print "  source \"$HOME/.config/artifactdog/terminal-equalizer.zsh\""
       print "fi"
@@ -51,7 +51,7 @@ if [ -n "$backup" ] || ! grep -Fq "$MARKER_START" "$ZSHRC"; then
       if (!found) {
         print ""
         print start
-        print "if [[ -o interactive ]]; then"
+        print "if [[ -o interactive && -t 1 ]]; then"
         print "  \"$HOME/.local/bin/artifactdog-terminal-banner\""
         print "  source \"$HOME/.config/artifactdog/terminal-equalizer.zsh\""
         print "fi"

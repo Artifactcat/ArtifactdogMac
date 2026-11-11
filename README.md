@@ -39,12 +39,15 @@ macOS permissions and enabling the Karabiner Hyper-key rule.
 - JankyBorders provides the focused/inactive colored window outlines; it is a
   visual layer, not another window manager.
 - Ghostty is transparent and uses native macOS blur.
-- New interactive zsh sessions keep the neofetch banner and add a live,
-  monochrome three-row audio-reactive equalizer with 21 wider columns and gaps
-  between them, inset two characters from neofetch's left edge while Spotify
-  is open, followed by a now-playing artist/title line and spacing before the
-  prompt. It samples at 60 FPS and uses 24 fractional height levels across
-  the three rows, with fast attack and eased decay for smooth motion.
+- New interactive zsh sessions keep the neofetch banner and add a monochrome
+  three-row audio-reactive equalizer with 21 wider columns
+  and gaps between them, inset two characters from neofetch's left edge while
+  Spotify is open, followed by a now-playing artist/title line and spacing
+  before the prompt. The bars keep animating in place (up to 60 FPS) while you
+  type, pause while commands run, and stop once output scrolls the banner away.
+  Neither the equalizer nor the now-playing line is attached to the command
+  prompt: they are repainted into their own rows by zle file-descriptor
+  handlers that verify the screen position with cursor-position reports.
 - CAVA reads the macOS system-output mix through CoreAudio tap support; the
   bars are driven by audio levels, not Spotify track metadata.
 - The native menu bar stays enabled. Native macOS Spaces are not required;

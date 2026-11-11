@@ -64,15 +64,18 @@ configured Caps+W action intentionally closes the last terminal and quits
 Ghostty. Fully quit and reopen Ghostty after installation so the setting is
 applied to new windows.
 
-When Spotify is open, new interactive shells start a live three-row audio
-equalizer with 21 wider columns and gaps between them directly below the
-neofetch banner and above the shell prompt, inset two characters from
-neofetch's left edge. It reads the macOS system-output mix through
-CAVA/CoreAudio and updates continuously at 60 FPS while audio plays. Each
-column has 24 fractional height levels across the three terminal rows, with
-fast attack and eased decay so the bars stay smooth and responsive. The graph
-is followed by a monochrome now-playing artist/title line and a blank spacer
-before the prompt. Grant
+When Spotify is open, new interactive shells show the three-row audio
+equalizer with 21 wider columns and gaps directly below the neofetch banner,
+inset two characters from its left edge, followed by the monochrome
+now-playing artist/title line (refreshed every few seconds) and a blank spacer
+before the normal prompt. CAVA reads the macOS system-output mix and the bars
+keep animating in place while you type at the prompt. They are painted from the
+background into their own rows, so the prompt is never blocked and the bars do
+not follow the command line. They pause while a command runs and resume at the
+next prompt. Once command output scrolls the banner up, or the terminal is
+cleared or resized, the bars stop and their last frame stays behind with the
+banner; open a new Ghostty window or tab to get a live one again.
+Grant
 Ghostty access under **System Settings
 → Privacy & Security → Screen & System Audio Recording → System Audio
 Recording Only**. Open a new Ghostty window after granting permission.
